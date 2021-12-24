@@ -1,0 +1,19 @@
+- platform: group
+  name: Band0
+  entities: 
+  - light.hue_fugato_color_spot_1
+
+- platform: group
+  name: Band1
+  entities: 
+  - light.hue_fugato_color_spot_2
+
+- platform: group
+  name: Band2
+  entities: 
+  - light.hue_fugato_color_spot_3
+
+- platform: group
+  name: Band3
+  entities: 
+  - light.keuken_sfeerlicht

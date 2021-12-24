@@ -1,0 +1,68 @@
+esphome:
+  name: music-analyser
+  platform: esp32
+  board: esp32dev
+  libraries:
+    - "arduinoFFT"
+    - "SPI"
+    - "Wire"
+    - "adafruit/Adafruit BusIO"
+    - "adafruit/Adafruit GFX Library"
+    - "adafruit/Adafruit SSD1306"
+    - "robtillaart/StopWatch"
+  includes:
+    - include/musicanalyser/musicanalyser.h
+    
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "26a2f079ae55111d1acd87c3ab7b47c9"
+
+i2c:
+  sda: 5
+  scl: 4
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Music-Analyser Fallback Hotspot"
+    password: "0aB99jmr3Azv"
+
+sensor:
+  - platform: custom
+    lambda: |-
+      auto audioAnalyser = new AudioAnalyser();
+      App.register_component(audioAnalyser);
+      return {audioAnalyser->band0, audioAnalyser->band1, audioAnalyser->band2, audioAnalyser->band3, audioAnalyser->band4, audioAnalyser->band5, audioAnalyser->band6};
+    sensors:
+      - name: "Band_0"
+        id: band0
+        accuracy_decimals: 2
+      - name: "Band_1"
+        id: band1
+        accuracy_decimals: 2
+      - name: "Band_2"
+        id: band2
+        accuracy_decimals: 2
+      - name: "Band_3"
+        id: band3
+        accuracy_decimals: 2
+      - name: "Band_4"
+        id: band4
+        accuracy_decimals: 2
+      - name: "Band_5"
+        id: band5
+        accuracy_decimals: 2
+      - name: "Band_6"
+        id: band6
+        accuracy_decimals: 2
+
+
+captive_portal:

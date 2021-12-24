@@ -1,0 +1,76 @@
+- id: '1640336697625'
+  alias: Disco band 0
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.band_0
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.band0
+    data:
+      transition: 0
+      color_name: blue
+    data_template:
+      brightness_pct: '{{ states(''sensor.band_0'') }}
+
+        '
+  mode: restart
+- id: '1640341731961'
+  alias: Disco band 1
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.band_1
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.band1
+    data:
+      transition: 0
+      color_name: red
+    data_template:
+      brightness_pct: '{{ states(''sensor.band_1'') }}
+
+        '
+  mode: restart
+- id: '1640341905350'
+  alias: Disco band 2
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.band_2
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.band2
+    data:
+      transition: 0
+      color_name: yellow
+    data_template:
+      brightness_pct: '{{ states(''sensor.band_2'') }}
+
+        '
+  mode: restart
+- id: '1640344277791'
+  alias: Disco band 3
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.band_3
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.band3
+    data:
+      transition: 0
+      color_name: pink
+    data_template:
+      brightness_pct: '{{ states(''sensor.band_3'') }}
+
+        '
+  mode: restart
