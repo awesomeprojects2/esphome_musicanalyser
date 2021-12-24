@@ -1,0 +1,33 @@
+blueprint:
+  name: Disco Band automation
+  description: Turn a light on based on the musicanalyser sensor
+  domain: automation
+  input:
+    band_sensor:
+      name: Band sensor
+      description: This is the band sensor of the musicanalyser
+      selector:
+        target:
+          entity:
+            domain: sensor
+    target_light_group:
+      name: Light group
+      description: This is the light group to change
+      selector:
+        target:
+          entity:
+            domain: light
+
+trigger:
+  platform: state
+  entity_id: !input band_sensor
+
+action:
+  service: light.turn_on
+  target:
+    entity_id: !input target_light_group
+  data:
+    transition: 0
+    color_name: red
+  data_template:
+    brightness_pct: '{{ states(''!input band_sensor'') }}'
